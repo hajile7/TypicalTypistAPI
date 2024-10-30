@@ -1,8 +1,14 @@
+using Microsoft.AspNetCore.DataProtection;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using TypicalTypistAPI;
+using TypicalTypistAPI.Models;
+using TypicalTypistAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the DI container.
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowSpecificOrigin",
@@ -12,20 +18,37 @@ builder.Services.AddCors(options =>
         });
 });
 
+// Add DbContext here so we can inject it elsewhere
+
+builder.Services.AddDbContext<TypicalTypistDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString(TypicalTypistAPI.Secret.url)));
+
+builder.Services.AddSingleton<WordCacheService>();
+
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Load wordCache on startup
+
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<TypicalTypistDbContext>();
+    var wordCache = scope.ServiceProvider.GetRequiredService<WordCacheService>();
+    await wordCache.LoadWordsAsync(dbContext);
+}
+
 // Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+// Use static files to handle images
 app.UseStaticFiles();
 app.UseStaticFiles(new StaticFileOptions()
 {

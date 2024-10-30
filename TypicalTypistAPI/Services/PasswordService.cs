@@ -1,4 +1,4 @@
-﻿namespace TypicalTypistAPI.Classes
+﻿namespace TypicalTypistAPI.Services
 {
     public class PasswordService
     {

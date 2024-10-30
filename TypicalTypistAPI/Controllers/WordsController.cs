@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TypicalTypistAPI.Models;
+using TypicalTypistAPI.Services;
 
 namespace TypicalTypistAPI.Controllers
 {
@@ -10,6 +10,13 @@ namespace TypicalTypistAPI.Controllers
     public class WordsController : ControllerBase
     {
         private TypicalTypistDbContext dbContext = new TypicalTypistDbContext();
+
+        private readonly WordCacheService wordCacheService;
+
+        public WordsController(WordCacheService _wordCacheService)
+        {
+            wordCacheService = _wordCacheService;
+        }
 
         // Helper functions
         static List<WordTestObject> convertToWordTestObjects(List<string> strs)
@@ -51,16 +58,19 @@ namespace TypicalTypistAPI.Controllers
         [HttpGet("Random")]
         public async Task<IActionResult> getRandomWords()
         {
+         
             int minChars = 142;
             int maxChars = 144;
             int totalCharCount = 0;
             List<string> selectedWords = [];
-            // If Words table grows in future or site has lots of traffic, I may want to update this random sort... it's not super efficient 
             List<string> randomWords = await dbContext.Words
                 .OrderBy(w => Guid.NewGuid())
                 .Select(w => w.Word1)
                 .Take(200)
                 .ToListAsync();
+
+            //var randomWords = wordCacheService.GetRandomWords(200);
+
 
             foreach (string word in randomWords)
             {
@@ -83,6 +93,7 @@ namespace TypicalTypistAPI.Controllers
 
             // Return WordTestObjects list
             return Ok(convertToWordTestObjects(selectedWords));
+            
 
         }
     }

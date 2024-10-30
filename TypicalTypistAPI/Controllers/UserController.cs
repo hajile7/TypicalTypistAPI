@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TypicalTypistAPI.Models;
 using TypicalTypistAPI.Classes;
 using Microsoft.EntityFrameworkCore;
+using TypicalTypistAPI.Services;
 
 
 namespace TypicalTypistAPI.Controllers
