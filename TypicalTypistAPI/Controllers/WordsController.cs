@@ -55,8 +55,9 @@ namespace TypicalTypistAPI.Controllers
             int maxChars = 144;
             int totalCharCount = 0;
             List<string> selectedWords = [];
+            // If Words table grows in future or site has lots of traffic, I may want to update this random sort... it's not super efficient 
             List<string> randomWords = await dbContext.Words
-                .OrderBy(w => EF.Functions.Random())
+                .OrderBy(w => Guid.NewGuid())
                 .Select(w => w.Word1)
                 .Take(200)
                 .ToListAsync();
