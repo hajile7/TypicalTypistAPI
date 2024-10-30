@@ -56,21 +56,20 @@ namespace TypicalTypistAPI.Controllers
 
         // HTTP calls
         [HttpGet("Random")]
-        public async Task<IActionResult> getRandomWords()
+        public IActionResult getRandomWords()
         {
          
             int minChars = 142;
             int maxChars = 144;
             int totalCharCount = 0;
             List<string> selectedWords = [];
-            List<string> randomWords = await dbContext.Words
-                .OrderBy(w => Guid.NewGuid())
-                .Select(w => w.Word1)
-                .Take(200)
-                .ToListAsync();
+            //List<string> randomWords = await dbContext.Words
+            //    .OrderBy(w => Guid.NewGuid())
+            //    .Select(w => w.Word1)
+            //    .Take(200)
+            //    .ToListAsync();
 
-            //var randomWords = wordCacheService.GetRandomWords(200);
-
+            var randomWords = wordCacheService.GetRandomWords(200);
 
             foreach (string word in randomWords)
             {
