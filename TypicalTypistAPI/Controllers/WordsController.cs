@@ -10,8 +10,8 @@ namespace TypicalTypistAPI.Controllers
     public class WordsController : ControllerBase
     {
         private TypicalTypistDbContext dbContext = new TypicalTypistDbContext();
-
         private readonly WordCacheService wordCacheService;
+        private static readonly Random _rng = new();
 
         public WordsController(WordCacheService _wordCacheService)
         {
@@ -54,6 +54,17 @@ namespace TypicalTypistAPI.Controllers
             return wordTestObjects;
         }
 
+        static List<string> fisherYatesSort(List<string> l) 
+        {
+            for(int i = l.Count - 1; i > 0; i--)
+            {
+                int j = _rng.Next(i + 1);
+                (l[i], l[j]) = (l[j], l[i]);
+            }
+            return l;
+                
+        }
+
         // HTTP calls
         [HttpGet("Random")]
         public IActionResult getRandomWords()
@@ -63,11 +74,9 @@ namespace TypicalTypistAPI.Controllers
             int maxChars = 144;
             int totalCharCount = 0;
             List<string> selectedWords = [];
-            //List<string> randomWords = await dbContext.Words
-            //    .OrderBy(w => Guid.NewGuid())
+            //List<string> randomWords = fisherYatesSort(dbContext.Words
             //    .Select(w => w.Word1)
-            //    .Take(200)
-            //    .ToListAsync();
+            //    .ToList());
 
             var randomWords = wordCacheService.GetRandomWords(200);
 

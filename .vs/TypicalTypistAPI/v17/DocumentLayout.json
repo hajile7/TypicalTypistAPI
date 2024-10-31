@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\performancetests\\load-test.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\performancetests\\load-test.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\controllers\\wordscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\controllers\\wordscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\services\\wordcacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\services\\wordcacheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\controllers\\userstatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\controllers\\userstatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,66 +26,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "WordCacheService.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Services\\WordCacheService.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Services\\WordCacheService.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Services\\WordCacheService.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Services\\WordCacheService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T14:51:10.329Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Program.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Program.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Program.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Program.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T04:41:22.285Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "WordsController.cs",
               "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\WordsController.cs",
               "RelativeDocumentMoniker": "TypicalTypistAPI\\Controllers\\WordsController.cs",
               "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\WordsController.cs",
               "RelativeToolTip": "TypicalTypistAPI\\Controllers\\WordsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABCAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAwwE4AAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-30T04:33:30.147Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserStatsController.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\UserStatsController.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Controllers\\UserStatsController.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\UserStatsController.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Controllers\\UserStatsController.cs",
-              "ViewState": "AgIAAPoAAAAAAAAAAAAYwMIAAAAXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T04:29:36.014Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\UserController.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Controllers\\UserController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-30T04:23:25.816Z"
+              "DocumentIndex": 0,
+              "Title": "load-test.js",
+              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\PerformanceTests\\load-test.js",
+              "RelativeDocumentMoniker": "TypicalTypistAPI\\PerformanceTests\\load-test.js",
+              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\PerformanceTests\\load-test.js",
+              "RelativeToolTip": "TypicalTypistAPI\\PerformanceTests\\load-test.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-10-30T20:21:19.84Z",
+              "EditorCaption": ""
             }
           ]
         }

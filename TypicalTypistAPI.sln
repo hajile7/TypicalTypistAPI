@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TypicalTypistAPI", "TypicalTypistAPI\TypicalTypistAPI.csproj", "{D14A30E9-D17A-41CE-A45C-207E740CE586}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TypicalTypistAPI", "TypicalTypistAPI\TypicalTypistAPI.csproj", "{D14A30E9-D17A-41CE-A45C-207E740CE586}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
