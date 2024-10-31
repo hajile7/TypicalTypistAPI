@@ -54,29 +54,14 @@ namespace TypicalTypistAPI.Controllers
             return wordTestObjects;
         }
 
-        static List<string> fisherYatesSort(List<string> l) 
-        {
-            for(int i = l.Count - 1; i > 0; i--)
-            {
-                int j = _rng.Next(i + 1);
-                (l[i], l[j]) = (l[j], l[i]);
-            }
-            return l;
-                
-        }
-
         // HTTP calls
         [HttpGet("Random")]
         public IActionResult getRandomWords()
         {
-         
             int minChars = 142;
             int maxChars = 144;
             int totalCharCount = 0;
             List<string> selectedWords = [];
-            //List<string> randomWords = fisherYatesSort(dbContext.Words
-            //    .Select(w => w.Word1)
-            //    .ToList());
 
             var randomWords = wordCacheService.GetRandomWords(200);
 
@@ -101,7 +86,6 @@ namespace TypicalTypistAPI.Controllers
 
             // Return WordTestObjects list
             return Ok(convertToWordTestObjects(selectedWords));
-            
 
         }
     }

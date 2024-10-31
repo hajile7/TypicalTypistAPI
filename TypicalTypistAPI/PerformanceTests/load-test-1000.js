@@ -18,7 +18,7 @@ export default function () {
         console.error(`Request failed with status: ${res.status}`);
     }
 
-    sleep(10);
+    sleep(5);
 }
 
 // Use handleSummary for basic view... comment out for full standard view
