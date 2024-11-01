@@ -58,8 +58,7 @@ namespace TypicalTypistAPI.Controllers
         [HttpGet("Random")]
         public IActionResult getRandomWords()
         {
-            int minChars = 142;
-            int maxChars = 144;
+            int desiredChars = 144;
             int totalCharCount = 0;
             List<string> selectedWords = [];
 
@@ -67,18 +66,15 @@ namespace TypicalTypistAPI.Controllers
 
             foreach (string word in randomWords)
             {
-                // Add 1 to denote spaces
+                // Add 1 to denote spaces... process out in frontend (ProcessCheckTestInstance)
                 string workingWord = word + "1";
-                totalCharCount += workingWord.Length;
-
-                if (totalCharCount > maxChars)
+                if(totalCharCount + workingWord.Length <= desiredChars)
                 {
-                    break;
+                    totalCharCount += workingWord.Length;
+                    selectedWords.AddRange(workingWord.Select(c => c.ToString()));
                 }
 
-                selectedWords.AddRange(workingWord.Select(c => c.ToString()));
-
-                if (totalCharCount >= minChars && totalCharCount <= maxChars)
+                if (totalCharCount == desiredChars || totalCharCount >= 142)
                 {
                     break;
                 }
