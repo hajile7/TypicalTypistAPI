@@ -9,7 +9,6 @@ namespace TypicalTypistAPI.Controllers
     [ApiController]
     public class WordsController : ControllerBase
     {
-        private TypicalTypistDbContext dbContext = new TypicalTypistDbContext();
         private readonly WordCacheService wordCacheService;
         private static readonly Random _rng = new();
 
@@ -29,7 +28,7 @@ namespace TypicalTypistAPI.Controllers
             {
                 char s = char.Parse(strs[i]);
 
-                if (s == '1')
+                if (s == ' ')
                 {
                     if (currentWordChars.Count > 0)
                     {
@@ -66,12 +65,106 @@ namespace TypicalTypistAPI.Controllers
 
             foreach (string word in randomWords)
             {
-                // Add 1 to denote spaces... process out in frontend (ProcessCheckTestInstance)
-                string workingWord = word + "1";
+                string workingWord = word + " ";
                 if(totalCharCount + workingWord.Length <= desiredChars)
                 {
                     totalCharCount += workingWord.Length;
                     selectedWords.AddRange(workingWord.Select(c => c.ToString()));
+                }
+
+                if (totalCharCount == desiredChars || totalCharCount >= 142)
+                {
+                    break;
+                }
+            }
+
+            // Return WordTestObjects list
+            return Ok(convertToWordTestObjects(selectedWords));
+
+        }
+
+        [HttpGet("RandomCaps")]
+        public IActionResult getRandomCapsWords()
+        {
+            int desiredChars = 144;
+            int totalCharCount = 0;
+            List<string> selectedWords = [];
+
+            var randomWords = wordCacheService.GetRandomWords(200);
+
+            foreach (string word in randomWords)
+            {
+                string workingWord = (char.ToUpper(word[0]) + word.Substring(1)) + " ";
+                if (totalCharCount + workingWord.Length <= desiredChars)
+                {
+                    totalCharCount += workingWord.Length;
+                    selectedWords.AddRange(workingWord.Select(c => c.ToString()));
+                }
+
+                if (totalCharCount == desiredChars || totalCharCount >= 142)
+                {
+                    break;
+                }
+            }
+
+            // Return WordTestObjects list
+            return Ok(convertToWordTestObjects(selectedWords));
+
+        }
+
+        [HttpGet("RandomNumbers")]
+        public IActionResult getRandomWordsAndNumbers()
+        {
+            int desiredChars = 144;
+            int totalCharCount = 0;
+            string numString = string.Empty;
+            List<string> selectedWords = [];
+
+            var randomWords = wordCacheService.GetRandomWords(200);
+
+            foreach (string word in randomWords)
+            {
+                // 33% chance to populate a num
+                if(_rng.Next(0, 3) == 2)
+                {
+                    // Decide string length
+                    int numStrLen = _rng.Next(1, 6);
+                    
+                    // Create numString
+                    switch (numStrLen)
+                    {
+                        case 1:
+                            numString = _rng.Next(1, 10).ToString() + " ";
+                            break;
+                        case 2:
+                            numString = _rng.Next(1, 100).ToString() + " ";
+                            break;
+                        case 3:
+                            numString = _rng.Next(1, 1000).ToString() + " ";
+                            break;
+                        case 4:
+                            numString = _rng.Next(1, 10000).ToString() + " ";
+                            break;
+                        case 5:
+                            numString = _rng.Next(1, 100000).ToString() + " ";
+                            break;
+                    }
+                }
+                string workingWord = word + " ";
+                if (totalCharCount + workingWord.Length <= desiredChars)
+                {
+                    totalCharCount += workingWord.Length;
+                    selectedWords.AddRange(workingWord.Select(c => c.ToString()));
+                }
+
+                if(numString != string.Empty)
+                {
+                    if(totalCharCount + numString.Length <= desiredChars)
+                    {
+                        totalCharCount += numString.Length;
+                        selectedWords.AddRange(numString.Select(c => c.ToString()));
+                    }
+                    numString = string.Empty;
                 }
 
                 if (totalCharCount == desiredChars || totalCharCount >= 142)

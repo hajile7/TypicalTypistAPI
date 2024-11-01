@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TypicalTypistAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+66f59733a46897d56b92f0a16782008e0464745f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14e0e1d327cd75930dccf56c885ed1021fcfa2f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("TypicalTypistAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TypicalTypistAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
