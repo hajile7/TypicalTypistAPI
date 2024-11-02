@@ -4,14 +4,14 @@ import { textSummary } from 'https://jslib.k6.io/k6-summary/0.0.2/index.js';
 
 export const options = {
     stages: [
-        { duration: '30s', target: 1000 },
-        { duration: '1m', target: 1000 },
-        { duration: '30s', target: 0 },
+        { duration: '5m', target: 250 },
+        { duration: '8h', target: 250 },
+        { duration: '5m', target: 0 },
     ],
 };
 
 export default function () {
-    const url = 'https://localhost:7258/api/Words/Random';
+    const url = 'https://localhost:7258/api/Words/RandomCaps';
     let res = http.get(url);
 
     if (res.status !== 200) {
