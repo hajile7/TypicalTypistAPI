@@ -24,6 +24,9 @@ builder.Services.AddDbContext<TypicalTypistDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString(TypicalTypistAPI.Secret.url)));
 
 builder.Services.AddSingleton<WordCacheService>();
+builder.Services.AddSingleton<PasswordService>();
+builder.Services.AddScoped<TypicalTypistDbContext>();
+builder.Services.AddScoped<Uploader>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

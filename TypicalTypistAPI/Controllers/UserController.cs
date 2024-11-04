@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TypicalTypistAPI.Models;
-using TypicalTypistAPI.Classes;
 using Microsoft.EntityFrameworkCore;
 using TypicalTypistAPI.Services;
 
@@ -10,13 +9,13 @@ namespace TypicalTypistAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController(TypicalTypistDbContext context, Uploader uploader, PasswordService passwordService) : ControllerBase
     {
-        private TypicalTypistDbContext dbContext = new TypicalTypistDbContext();
+        private readonly TypicalTypistDbContext dbContext = context;
 
-        private Uploader uploader = new Uploader();
+        private readonly Uploader uploader = uploader;
 
-        private PasswordService passwordService = new PasswordService();
+        private readonly PasswordService passwordService = passwordService;
 
         // DTO Conversions
         static UserDTO convertUserDTO(User u)
@@ -29,11 +28,11 @@ namespace TypicalTypistAPI.Controllers
                 LastName = u.LastName,
                 UserName = u.UserName,
                 Email = u.Email,
-                Image = convertImageDTO(u.Image),
+                Image = u.Image != null ? convertImageDTO(u.Image) : new ImageDTO { ImagePath = "Images/DefaultProfPic/V1DefaultProfilePic.webp" },
             };
         }
 
-        static ImageDTO convertImageDTO(Image i)
+        static ImageDTO? convertImageDTO(Image i)
         {
             if (i == null)
             {
@@ -45,15 +44,14 @@ namespace TypicalTypistAPI.Controllers
                 ImageId = i.ImageId,
                 ImagePath = i.ImagePath
             };
-
         }
 
         // API Calls
 
         [HttpGet("{userId}")]
-        public async Task<IActionResult> getUser(int userId)
+        public async Task<IActionResult> GetUser(int userId)
         {
-            User result = await dbContext.Users.Include(i => i.Image).Where(u => u.Active == true).FirstOrDefaultAsync(u => u.UserId == userId);
+            User? result = await dbContext.Users.Include(i => i.Image).Where(u => u.Active == true).FirstOrDefaultAsync(u => u.UserId == userId);
 
             if (result == null || result.Active == false)
             {
@@ -66,11 +64,11 @@ namespace TypicalTypistAPI.Controllers
         [HttpGet("Login")]
         public async Task<IActionResult> Login(string username, string password)
         {
-            User result = await dbContext.Users.Include(i => i.Image).Where(u => u.Active == true).FirstOrDefaultAsync(u => u.UserName == username);
+            User? result = await dbContext.Users.Include(i => i.Image).Where(u => u.Active == true).FirstOrDefaultAsync(u => u.UserName == username);
 
             if (result == null || result.Active == false)
             {
-                return NotFound();
+                return NotFound("User not found");
             }
 
             bool isPasswordValid = passwordService.VerifyPassword(password, result.Password);
@@ -83,7 +81,7 @@ namespace TypicalTypistAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> createUser([FromForm] PostUserDTO u)
+        public async Task<IActionResult> CreateUser([FromForm] PostUserDTO u)
         {
             if (!ModelState.IsValid)
             {
@@ -106,14 +104,17 @@ namespace TypicalTypistAPI.Controllers
 
             if (u.Image != null)
             {
-                Image newImage = uploader.getImage(u.Image, "Users");
+                Image? newImage = await uploader.GetImageAsync(u.Image, "Users");
                 if (newImage != null)
                 {
                     dbContext.Images.Add(newImage);
                     await dbContext.SaveChangesAsync();
-
                     newUser.ImageId = newImage.ImageId;
                 }
+            }
+            else
+            {
+                newUser.ImageId = 1;
             }
 
             dbContext.Users.Add(newUser);
@@ -123,53 +124,59 @@ namespace TypicalTypistAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> updateUser([FromForm] PutUserDTO u, int id)
+        public async Task<IActionResult> UpdateUser([FromForm] PutUserDTO u, int id)
         {
-            User updateUser = await dbContext.Users.Include(i => i.Image).FirstOrDefaultAsync(u => u.UserId == id);
+            User? updateUser = await dbContext.Users.Include(i => i.Image).FirstOrDefaultAsync(user => user.UserId == id);
 
             if (updateUser == null || updateUser.Active == false)
             {
                 return NotFound("User Not Found");
             }
-            if (u.FirstName != null)
-            {
-                updateUser.FirstName = u.FirstName;
-            }
-            if (u.LastName != null)
-            {
-                updateUser.LastName = u.LastName;
-            }
+
+            if (u.FirstName != null) updateUser.FirstName = u.FirstName;
+            if (u.LastName != null) updateUser.LastName = u.LastName;
             if (u.UserName != null)
             {
                 if (await dbContext.Users.AnyAsync(o => o.UserName == u.UserName && u.UserName != updateUser.UserName))
                 {
-                    return BadRequest();
+                    return BadRequest("Username is already in use.");
                 }
                 updateUser.UserName = u.UserName;
-
             }
             if (u.Email != null)
             {
                 if (await dbContext.Users.AnyAsync(o => o.Email == u.Email && u.Email != updateUser.Email && o.Active == true))
                 {
-                    return BadRequest();
+                    return BadRequest("Email is already in use.");
                 }
                 updateUser.Email = u.Email;
             }
+
             if (u.Image != null)
             {
-                Image newImage = uploader.getImage(u.Image, "Users");
+                Image? newImage = await uploader.GetImageAsync(u.Image, "Users");
                 if (newImage != null)
                 {
-                    if (updateUser.Image != null && System.IO.File.Exists(Path.Combine(Directory.GetCurrentDirectory(), updateUser.Image.ImagePath)) && updateUser.Image.ImagePath != "Images\\DefaultProfPic\\V1DefaultProfPic.webp")
+                    if (updateUser.Image != null &&
+                        System.IO.File.Exists(Path.Combine(Directory.GetCurrentDirectory(), updateUser.Image.ImagePath)) &&
+                        updateUser.Image.ImageId != 1) 
                     {
-                        System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), updateUser.Image.ImagePath));
-                        dbContext.Images.Remove(updateUser.Image);
+                        try
+                        {
+                            System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), updateUser.Image.ImagePath));
+                            dbContext.Images.Remove(updateUser.Image);
+                        }
+                        catch (Exception ex)
+                        {
+                            return StatusCode(500, "Error deleting the old image: " + ex.Message);
+                        }
                     }
+
                     updateUser.ImageId = newImage.ImageId;
-                    updateUser.Image = await dbContext.Images.FindAsync(updateUser.ImageId);
+                    updateUser.Image = newImage;
                 }
             }
+
             if (updateUser.ImageId == null)
             {
                 updateUser.ImageId = 1;
@@ -184,9 +191,9 @@ namespace TypicalTypistAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> removeUser(int id)
+        public async Task<IActionResult> DeactivateUser(int id)
         {
-            User result = await dbContext.Users.Include(i => i.Image).FirstOrDefaultAsync(u => u.UserId == id);
+            User? result = await dbContext.Users.Include(i => i.Image).FirstOrDefaultAsync(u => u.UserId == id);
 
             if (result == null || result.Active == false)
             {
@@ -195,24 +202,24 @@ namespace TypicalTypistAPI.Controllers
 
             result.Active = false;
 
-            if (result.Image != null && System.IO.File.Exists(Path.Combine(Directory.GetCurrentDirectory(), result.Image.ImagePath))
-                && result.Image.ImagePath != "Images\\DefaultProfPic\\V1DefaultProfPic.webp")
+            if (result.Image != null && System.IO.File.Exists(Path.Combine(Directory.GetCurrentDirectory(), result.Image.ImagePath)) &&
+            result.Image.ImageId != 1)
             {
-                System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), result.Image.ImagePath));
-                dbContext.Images.Remove(result.Image);
-            }
-
-            if (result.ImageId == null)
-            {
-                result.ImageId = 1;
-                result.Image = await dbContext.Images.FindAsync(1);
+                try
+                {
+                    System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), result.Image.ImagePath));
+                    dbContext.Images.Remove(result.Image);
+                }
+                catch (Exception ex)
+                {
+                    return StatusCode(500, "Error deleting the image file: " + ex.Message);
+                }
             }
 
             dbContext.Users.Update(result);
             await dbContext.SaveChangesAsync();
 
             return NoContent();
-
         }
     }
 }

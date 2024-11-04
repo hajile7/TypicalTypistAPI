@@ -18,17 +18,16 @@ namespace TypicalTypistAPI.Controllers
         }
 
         // Helper functions
-        static List<WordTestObject> convertToWordTestObjects(List<string> strs)
+        static List<WordTestObject> convertToWordTestObjects(List<char> strs)
         {
             List<WordTestObject> wordTestObjects = new List<WordTestObject>();
-            List<char> currentWordChars = new List<char>();
+            List<char> currentWordChars = [];
             int startIndex = 0;
 
             for (int i = 0; i < strs.Count; i++)
             {
-                char s = char.Parse(strs[i]);
 
-                if (s == ' ')
+                if (strs[i] == ' ')
                 {
                     if (currentWordChars.Count > 0)
                     {
@@ -43,7 +42,7 @@ namespace TypicalTypistAPI.Controllers
                     {
                         startIndex = i;
                     }
-                    currentWordChars.Add(s);
+                    currentWordChars.Add(strs[i]);
                 }
             }
             if (currentWordChars.Count > 0)
@@ -57,15 +56,14 @@ namespace TypicalTypistAPI.Controllers
         [HttpGet("Random")]
         public IActionResult getRandomWords()
         {
-            int totalWordCount = 0;
-            List<string> selectedWords = [];
-
             var randomWords = wordCacheService.GetRandomWords(200);
+            int totalWordCount = 0;
+            List<char> selectedWords = [];
 
             foreach (string word in randomWords)
             {
                 string workingWord = word + " ";
-                selectedWords.AddRange(workingWord.Select(c => c.ToString()));
+                selectedWords.AddRange(workingWord.Select(c => c));
                 totalWordCount++;
 
                 if (totalWordCount == 50)
@@ -82,15 +80,14 @@ namespace TypicalTypistAPI.Controllers
         [HttpGet("RandomCaps")]
         public IActionResult getRandomCapsWords()
         {
-            int totalWordCount = 0;
-            List<string> selectedWords = [];
-
             var randomWords = wordCacheService.GetRandomWords(200);
+            int totalWordCount = 0;
+            List<char> selectedWords = [];
 
             foreach (string word in randomWords)
             {
                 string workingWord = (char.ToUpper(word[0]) + word.Substring(1)) + " ";
-                selectedWords.AddRange(workingWord.Select(c => c.ToString()));
+                selectedWords.AddRange(workingWord.Select(c => c));
 
                 if (totalWordCount == 50)
                 {
@@ -108,7 +105,7 @@ namespace TypicalTypistAPI.Controllers
         {
             int totalWordCount = 0;
             string numString = string.Empty;
-            List<string> selectedWords = [];
+            List<char> selectedWords = [];
 
             var randomWords = wordCacheService.GetRandomWords(200);
 
@@ -142,12 +139,12 @@ namespace TypicalTypistAPI.Controllers
                 }
 
                 string workingWord = word + " ";
-                selectedWords.AddRange(workingWord.Select(c => c.ToString()));
+                selectedWords.AddRange(workingWord.Select(c => c));
                 totalWordCount++;
 
                 if(numString != string.Empty && totalWordCount != 50)
                 {
-                    selectedWords.AddRange(numString.Select(c => c.ToString()));
+                    selectedWords.AddRange(numString.Select(c => c));
                     totalWordCount++;
                     numString = string.Empty;
                 }
