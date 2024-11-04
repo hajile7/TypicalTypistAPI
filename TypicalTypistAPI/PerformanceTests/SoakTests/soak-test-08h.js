@@ -11,7 +11,7 @@ export const options = {
 };
 
 export default function () {
-    const url = 'https://localhost:7258/api/Words/RandomCaps';
+    const url = 'https://localhost:7258/api/Words/RandomNumbers';
     let res = http.get(url);
 
     if (res.status !== 200) {

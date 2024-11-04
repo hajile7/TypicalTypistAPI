@@ -57,8 +57,7 @@ namespace TypicalTypistAPI.Controllers
         [HttpGet("Random")]
         public IActionResult getRandomWords()
         {
-            int desiredChars = 144;
-            int totalCharCount = 0;
+            int totalWordCount = 0;
             List<string> selectedWords = [];
 
             var randomWords = wordCacheService.GetRandomWords(200);
@@ -66,13 +65,10 @@ namespace TypicalTypistAPI.Controllers
             foreach (string word in randomWords)
             {
                 string workingWord = word + " ";
-                if(totalCharCount + workingWord.Length <= desiredChars)
-                {
-                    totalCharCount += workingWord.Length;
-                    selectedWords.AddRange(workingWord.Select(c => c.ToString()));
-                }
+                selectedWords.AddRange(workingWord.Select(c => c.ToString()));
+                totalWordCount++;
 
-                if (totalCharCount == desiredChars || totalCharCount >= 142)
+                if (totalWordCount == 50)
                 {
                     break;
                 }
@@ -86,8 +82,7 @@ namespace TypicalTypistAPI.Controllers
         [HttpGet("RandomCaps")]
         public IActionResult getRandomCapsWords()
         {
-            int desiredChars = 144;
-            int totalCharCount = 0;
+            int totalWordCount = 0;
             List<string> selectedWords = [];
 
             var randomWords = wordCacheService.GetRandomWords(200);
@@ -95,13 +90,9 @@ namespace TypicalTypistAPI.Controllers
             foreach (string word in randomWords)
             {
                 string workingWord = (char.ToUpper(word[0]) + word.Substring(1)) + " ";
-                if (totalCharCount + workingWord.Length <= desiredChars)
-                {
-                    totalCharCount += workingWord.Length;
-                    selectedWords.AddRange(workingWord.Select(c => c.ToString()));
-                }
+                selectedWords.AddRange(workingWord.Select(c => c.ToString()));
 
-                if (totalCharCount == desiredChars || totalCharCount >= 142)
+                if (totalWordCount == 50)
                 {
                     break;
                 }
@@ -115,8 +106,7 @@ namespace TypicalTypistAPI.Controllers
         [HttpGet("RandomNumbers")]
         public IActionResult getRandomWordsAndNumbers()
         {
-            int desiredChars = 144;
-            int totalCharCount = 0;
+            int totalWordCount = 0;
             string numString = string.Empty;
             List<string> selectedWords = [];
 
@@ -127,7 +117,7 @@ namespace TypicalTypistAPI.Controllers
                 // 33% chance to populate a num
                 if(_rng.Next(0, 3) == 2)
                 {
-                    // Decide string length
+                    // Decide numString length (1 - 5)
                     int numStrLen = _rng.Next(1, 6);
                     
                     // Create numString
@@ -150,24 +140,19 @@ namespace TypicalTypistAPI.Controllers
                             break;
                     }
                 }
-                string workingWord = word + " ";
-                if (totalCharCount + workingWord.Length <= desiredChars)
-                {
-                    totalCharCount += workingWord.Length;
-                    selectedWords.AddRange(workingWord.Select(c => c.ToString()));
-                }
 
-                if(numString != string.Empty)
+                string workingWord = word + " ";
+                selectedWords.AddRange(workingWord.Select(c => c.ToString()));
+                totalWordCount++;
+
+                if(numString != string.Empty && totalWordCount != 50)
                 {
-                    if(totalCharCount + numString.Length <= desiredChars)
-                    {
-                        totalCharCount += numString.Length;
-                        selectedWords.AddRange(numString.Select(c => c.ToString()));
-                    }
+                    selectedWords.AddRange(numString.Select(c => c.ToString()));
+                    totalWordCount++;
                     numString = string.Empty;
                 }
 
-                if (totalCharCount == desiredChars || totalCharCount >= 142)
+                if (totalWordCount == 50)
                 {
                     break;
                 }
