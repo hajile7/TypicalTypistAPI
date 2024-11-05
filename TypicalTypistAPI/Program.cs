@@ -26,7 +26,6 @@ builder.Services.AddDbContext<TypicalTypistDbContext>(options =>
 builder.Services.AddSingleton<WordCacheService>();
 builder.Services.AddSingleton<PasswordService>();
 builder.Services.AddScoped<TypicalTypistDbContext>();
-builder.Services.AddScoped<Uploader>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -50,14 +49,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-// Use static files to handle images
-app.UseStaticFiles();
-app.UseStaticFiles(new StaticFileOptions()
-{
-    FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Images")),
-    RequestPath = new PathString("/Images")
-});
 
 app.UseHttpsRedirection();
 

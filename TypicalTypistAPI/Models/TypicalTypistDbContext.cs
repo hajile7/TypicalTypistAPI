@@ -17,8 +17,6 @@ public partial class TypicalTypistDbContext : DbContext
 
     public virtual DbSet<Bigraph> Bigraphs { get; set; }
 
-    public virtual DbSet<Image> Images { get; set; }
-
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserBigraphStat> UserBigraphStats { get; set; }
@@ -49,13 +47,6 @@ public partial class TypicalTypistDbContext : DbContext
                 .HasConstraintName("bigraphs_wordid_fk");
         });
 
-        modelBuilder.Entity<Image>(entity =>
-        {
-            entity.HasKey(e => e.ImageId).HasName("images_imageid_pk");
-
-            entity.Property(e => e.ImagePath).HasMaxLength(300);
-        });
-
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.UserId).HasName("users_userid_pk");
@@ -73,16 +64,10 @@ public partial class TypicalTypistDbContext : DbContext
                 .HasDefaultValueSql("('1')");
             entity.Property(e => e.Email).HasMaxLength(75);
             entity.Property(e => e.FirstName).HasMaxLength(30);
-            entity.Property(e => e.ImageId).HasDefaultValue(1);
             entity.Property(e => e.Joined).HasDefaultValueSql("(CONVERT([date],getdate()))");
             entity.Property(e => e.LastName).HasMaxLength(30);
             entity.Property(e => e.Password).HasMaxLength(255);
             entity.Property(e => e.UserName).HasMaxLength(30);
-
-            entity.HasOne(d => d.Image).WithMany(p => p.Users)
-                .HasForeignKey(d => d.ImageId)
-                .OnDelete(DeleteBehavior.SetNull)
-                .HasConstraintName("users_imageid_fk");
         });
 
         modelBuilder.Entity<UserBigraphStat>(entity =>

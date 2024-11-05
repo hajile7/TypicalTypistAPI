@@ -19,11 +19,7 @@ public partial class User
 
     public string Email { get; set; } = null!;
 
-    public int? ImageId { get; set; }
-
     public bool? Active { get; set; }
-
-    public virtual Image? Image { get; set; }
 
     public virtual ICollection<UserBigraphStat> UserBigraphStats { get; set; } = new List<UserBigraphStat>();
 
