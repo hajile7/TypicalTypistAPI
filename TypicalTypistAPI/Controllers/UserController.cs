@@ -44,17 +44,17 @@ namespace TypicalTypistAPI.Controllers
             return Ok(convertUserDTO(result));
         }
 
-        [HttpGet("Login")]
-        public async Task<IActionResult> Login(string username, string password)
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(LoginModel loginModel)
         {
-            User? result = await dbContext.Users.Where(u => u.Active == true).FirstOrDefaultAsync(u => u.UserName == username);
+            User? result = await dbContext.Users.Where(u => u.Active == true).FirstOrDefaultAsync(u => u.UserName == loginModel.Username);
 
             if (result == null || result.Active == false)
             {
                 return NotFound("User not found");
             }
 
-            bool isPasswordValid = passwordService.VerifyPassword(password, result.Password);
+            bool isPasswordValid = passwordService.VerifyPassword(loginModel.Password, result.Password);
 
             if (!isPasswordValid)
             {
