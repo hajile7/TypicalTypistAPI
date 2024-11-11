@@ -192,7 +192,7 @@ namespace TypicalTypistAPI.Controllers
                 {
                     UserKeyStat keyStat = new UserKeyStat();
 
-                    // keyStat.UserId = userKeyStatDTO.UserId;
+                    keyStat.UserId = userKeyStatDTO.UserId;
                     keyStat.Key = userKeyStatDTO.Key;
                     keyStat.TotalTyped = userKeyStatDTO.TotalTyped;
                     keyStat.Accuracy = userKeyStatDTO.Accuracy;
@@ -275,7 +275,7 @@ namespace TypicalTypistAPI.Controllers
 
             if (result.Count == 0)
             {
-                return NotFound(new { Message = "No bigraph data found for user." });
+                return NotFound(new { Message = "No key data found for user." });
             }
 
             List<UserKeyStatDTO> formattedResult = result.Select(t => convertToKeyStatDTO(t)).ToList();

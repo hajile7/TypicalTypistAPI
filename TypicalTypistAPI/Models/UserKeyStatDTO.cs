@@ -2,7 +2,7 @@
 {
     public class UserKeyStatDTO
     {
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         public string Key { get; set; } = null!;
         public int? TotalTyped { get; set; }
         public decimal? Accuracy { get; set; }
