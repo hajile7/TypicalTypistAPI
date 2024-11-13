@@ -453,7 +453,7 @@ namespace TypicalTypistAPI.Controllers
         public IActionResult GetChaotic(int by)
         {
             int totalWordCount = 0;
-            StringBuilder capsBuilder = new(1, 10);
+            StringBuilder capsBuilder = new(1, 11);
             List<char> selectedWords = [];
 
             var randomWords = wordCacheService.GetRandomWords(200);
