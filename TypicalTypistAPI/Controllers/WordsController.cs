@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 using TypicalTypistAPI.Models;
 using TypicalTypistAPI.Services;
 
@@ -11,6 +12,9 @@ namespace TypicalTypistAPI.Controllers
     {
         private readonly WordCacheService wordCacheService;
         private static readonly Random _rng = new();
+        private static readonly StringBuilder sb = new StringBuilder(1, 6);
+        private static readonly char[] LegalSymbols = new char[] { '.', ',', '\'', '"', '?', '!', '*', '=', '+', '-', '/', '\\', '<', '>', '(', ')', '{', '}',
+            '[', ']', '^', '~', '%', '$', '#', '@', '`', '&', '|' };
 
         public WordsController(WordCacheService _wordCacheService)
         {
@@ -54,7 +58,7 @@ namespace TypicalTypistAPI.Controllers
 
         // HTTP calls
         [HttpGet("Random/{x}")]
-        public IActionResult getRandomWords(int x)
+        public IActionResult GetRandomWords(int x)
         {
             var randomWords = wordCacheService.GetRandomWords(200);
             int totalWordCount = 0;
@@ -71,14 +75,11 @@ namespace TypicalTypistAPI.Controllers
                     break;
                 }
             }
-
-            // Return WordTestObjects list
             return Ok(convertToWordTestObjects(selectedWords));
-
         }
 
         [HttpGet("RandomCaps/{y}")]
-        public IActionResult getRandomCapsWords(int y)
+        public IActionResult GetRandomCaps(int y)
         {
             var randomWords = wordCacheService.GetRandomWords(200);
             int totalWordCount = 0;
@@ -86,7 +87,7 @@ namespace TypicalTypistAPI.Controllers
 
             foreach (string word in randomWords)
             {
-                string workingWord = (char.ToUpper(word[0]) + word.Substring(1)) + " ";
+                string workingWord = (char.ToUpper(word[0]) + word[1..]) + " ";
                 selectedWords.AddRange(workingWord.Select(c => c));
                 totalWordCount++;
 
@@ -95,70 +96,464 @@ namespace TypicalTypistAPI.Controllers
                     break;
                 }
             }
-
-            // Return WordTestObjects list
             return Ok(convertToWordTestObjects(selectedWords));
-
         }
 
-        [HttpGet("RandomNumbers/{z}")]
-        public IActionResult getRandomWordsAndNumbers(int z)
+        [HttpGet("RandomNums/{z}")]
+        public IActionResult GetRandomWordsAndNums(int z)
         {
             int totalWordCount = 0;
-            string numString = string.Empty;
+            List<char> selectedWords = [];
+            var randomWords = wordCacheService.GetRandomWords(200);
+
+            foreach (string word in randomWords)
+            {
+                string workingWord = word + " ";
+                selectedWords.AddRange(workingWord.Select(c => c));
+                totalWordCount++;
+
+                if (totalWordCount == z)
+                {
+                    break;
+                }
+
+                // 33% chance to populate a num string
+                if (_rng.Next(0, 3) == 2)
+                {
+                    int numStrLen = _rng.Next(1, 6);
+                    switch (numStrLen)
+                    {
+                        case 1:
+                            sb.Append(_rng.Next(1, 10));
+                            break;
+                        case 2:
+                            sb.Append(_rng.Next(1, 100));
+                            break;
+                        case 3:
+                            sb.Append(_rng.Next(1, 1000));
+                            break;
+                        case 4:
+                            sb.Append(_rng.Next(1, 10000));
+                            break;
+                        case 5:
+                            sb.Append(_rng.Next(1, 100000));
+                            break;
+                    }
+
+                    sb.Append(' ');
+                    selectedWords.AddRange(sb.ToString().Select(c => c));
+                    totalWordCount++;
+                    sb.Clear();
+
+                    if (totalWordCount == z)
+                    {
+                        break;
+                    }
+                }
+            }
+            return Ok(convertToWordTestObjects(selectedWords));
+        }
+
+        [HttpGet("RandomSymbols/{ax}")]
+        public IActionResult GetRandomWordsAndSymbols(int ax)
+        {
+            int totalWordCount = 0;
+            List<char> selectedWords = [];
+            var randomWords = wordCacheService.GetRandomWords(200);
+
+            foreach (string word in randomWords)
+            {
+                string workingWord = word + " ";
+                selectedWords.AddRange(workingWord.Select(c => c));
+                totalWordCount++;
+
+                if (totalWordCount == ax)
+                {
+                    break;
+                }
+
+                // 33% chance to populate symbol string
+                if (_rng.Next(0, 3) == 2)
+                {
+                    int symStrLen = _rng.Next(1, 6);
+                    switch (symStrLen)
+                    {
+                        case 1:
+                            while(sb.Length < 1)
+                            {
+                                sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                            }
+                            break;
+                        case 2:
+                            while (sb.Length < 2)
+                            {
+                                sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                            }
+                            break;
+                        case 3:
+                            while (sb.Length < 3)
+                            {
+                                sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                            }
+                            break;
+                        case 4:
+                            while (sb.Length < 4)
+                            {
+                                sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                            }
+                            break;
+                        case 5:
+                            while (sb.Length < 5)
+                            {
+                                sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                            }
+                            break;
+                    }
+
+                    sb.Append(' ');
+                    selectedWords.AddRange(sb.ToString().Select(c => c));
+                    totalWordCount++;
+                    sb.Clear();
+
+                    if (totalWordCount == ax)
+                    {
+                        break;
+                    }
+                }
+            }
+            return Ok(convertToWordTestObjects(selectedWords));
+        }
+
+        [HttpGet("RandomCapsNums/{ay}")]
+        public IActionResult GetRandomCapsAndNums(int ay)
+        {
+            int totalWordCount = 0;
+            List<char> selectedWords = [];
+            var randomWords = wordCacheService.GetRandomWords(200);
+
+            foreach (string word in randomWords)
+            {
+                string workingWord = (char.ToUpper(word[0]) + word.Substring(1)) + " ";
+                selectedWords.AddRange(workingWord.Select(c => c));
+                totalWordCount++;
+
+                if (totalWordCount == ay)
+                {
+                    break;
+                }
+
+                // 33% chance to populate num string
+                if (_rng.Next(0, 3) == 2)
+                {
+                    int numStrLen = _rng.Next(1, 6);
+                    switch (numStrLen)
+                    {
+                        case 1:
+                            sb.Append(_rng.Next(1, 10));
+                            break;
+                        case 2:
+                            sb.Append(_rng.Next(1, 100));
+                            break;
+                        case 3:
+                            sb.Append(_rng.Next(1, 1000));
+                            break;
+                        case 4:
+                            sb.Append(_rng.Next(1, 10000));
+                            break;
+                        case 5:
+                            sb.Append(_rng.Next(1, 100000));
+                            break;
+                    }
+
+                    sb.Append(' ');
+                    selectedWords.AddRange(sb.ToString().Select(c => c));
+                    totalWordCount++;
+                    sb.Clear();
+
+                    if (totalWordCount == ay)
+                    {
+                        break;
+                    }
+                }
+            }
+            return Ok(convertToWordTestObjects(selectedWords));
+        }
+
+        [HttpGet("RandomCapsSymbols/{az}")]
+        public IActionResult GetRandomCapsAndSymbols(int az)
+        {
+            int totalWordCount = 0;
             List<char> selectedWords = [];
 
             var randomWords = wordCacheService.GetRandomWords(200);
 
             foreach (string word in randomWords)
             {
-                // 33% chance to populate a num
-                if(_rng.Next(0, 3) == 2)
-                {
-                    // Decide numString length (1 - 5)
-                    int numStrLen = _rng.Next(1, 6);
-                    
-                    // Create numString
-                    switch (numStrLen)
-                    {
-                        case 1:
-                            numString = _rng.Next(1, 10).ToString() + " ";
-                            break;
-                        case 2:
-                            numString = _rng.Next(1, 100).ToString() + " ";
-                            break;
-                        case 3:
-                            numString = _rng.Next(1, 1000).ToString() + " ";
-                            break;
-                        case 4:
-                            numString = _rng.Next(1, 10000).ToString() + " ";
-                            break;
-                        case 5:
-                            numString = _rng.Next(1, 100000).ToString() + " ";
-                            break;
-                    }
-                }
-
-                string workingWord = word + " ";
+                string workingWord = (char.ToUpper(word[0]) + word[1..]) + " ";
                 selectedWords.AddRange(workingWord.Select(c => c));
                 totalWordCount++;
 
-                if(numString != string.Empty && totalWordCount != z)
-                {
-                    selectedWords.AddRange(numString.Select(c => c));
-                    totalWordCount++;
-                    numString = string.Empty;
-                }
-
-                if (totalWordCount == z)
+                if (totalWordCount == az)
                 {
                     break;
                 }
+
+                // 33% chance to populate symbol string
+                if (_rng.Next(0, 3) == 2)
+                {
+                    int symStrLen = _rng.Next(1, 6);
+                    switch (symStrLen)
+                    {
+                        case 1:
+                            while (sb.Length < 1)
+                            {
+                                sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                            }
+                            break;
+                        case 2:
+                            while (sb.Length < 2)
+                            {
+                                sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                            }
+                            break;
+                        case 3:
+                            while (sb.Length < 3)
+                            {
+                                sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                            }
+                            break;
+                        case 4:
+                            while (sb.Length < 4)
+                            {
+                                sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                            }
+                            break;
+                        case 5:
+                            while (sb.Length < 5)
+                            {
+                                sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                            }
+                            break;
+                    }
+
+                    sb.Append(' ');
+                    selectedWords.AddRange(sb.ToString().Select(c => c));
+                    totalWordCount++;
+                    sb.Clear();
+
+                    if (totalWordCount == az)
+                    {
+                        break;
+                    }
+                }
             }
-
-            // Return WordTestObjects list
             return Ok(convertToWordTestObjects(selectedWords));
+        }
 
+        [HttpGet("RandomCapsNumsAndSymbols/{bx}")]
+        public IActionResult GetRandomCapsNumsAndSymbols(int bx)
+        {
+            int totalWordCount = 0;
+            List<char> selectedWords = [];
+            var randomWords = wordCacheService.GetRandomWords(200);
+
+            foreach (string word in randomWords)
+            {
+                string workingWord = (char.ToUpper(word[0]) + word[1..]) + " ";
+                selectedWords.AddRange(workingWord.Select(c => c));
+                totalWordCount++;
+
+                if (totalWordCount == bx)
+                {
+                    break;
+                }
+
+                // 50% chance to populate symbol or number string
+                if (_rng.Next(2) == 1)
+                {
+                    // 50% chance of symbol string
+                    if (_rng.Next(2) == 0)
+                    {
+                        int symStrLen = _rng.Next(1, 6);
+                        switch (symStrLen)
+                        {
+                            case 1:
+                                while (sb.Length < 1)
+                                {
+                                    sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                                }
+                                break;
+                            case 2:
+                                while (sb.Length < 2)
+                                {
+                                    sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                                }
+                                break;
+                            case 3:
+                                while (sb.Length < 3)
+                                {
+                                    sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                                }
+                                break;
+                            case 4:
+                                while (sb.Length < 4)
+                                {
+                                    sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                                }
+                                break;
+                            case 5:
+                                while (sb.Length < 5)
+                                {
+                                    sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                                }
+                                break;
+                        }
+                        sb.Append(' ');
+                    }
+
+                    // 50% chance of num string
+                    else
+                    {
+                        int numStrLen = _rng.Next(1, 6);
+                        switch (numStrLen)
+                        {
+                            case 1:
+                                sb.Append(_rng.Next(1, 10));
+                                break;
+                            case 2:
+                                sb.Append(_rng.Next(1, 100));
+                                break;
+                            case 3:
+                                sb.Append(_rng.Next(1, 1000));
+                                break;
+                            case 4:
+                                sb.Append(_rng.Next(1, 10000));
+                                break;
+                            case 5:
+                                sb.Append(_rng.Next(1, 100000));
+                                break;
+                        }
+                        sb.Append(' ');
+                    }
+
+                    selectedWords.AddRange(sb.ToString().Select(c => c));
+                    totalWordCount++;
+                    sb.Clear();
+
+                    if (totalWordCount == bx)
+                    {
+                        break;
+                    }
+                }
+            }
+            return Ok(convertToWordTestObjects(selectedWords));
+        }
+
+        [HttpGet("Chaotic/{by}")]
+        public IActionResult GetChaotic(int by)
+        {
+            int totalWordCount = 0;
+            StringBuilder capsBuilder = new(1, 10);
+            List<char> selectedWords = [];
+
+            var randomWords = wordCacheService.GetRandomWords(200);
+
+            foreach (string word in randomWords)
+            {
+                // Handle random caps
+                string workingWord = word + " ";
+                foreach(char c in workingWord)
+                {
+                    capsBuilder.Append(_rng.Next(2) == 0 ? char.ToUpper(c) : char.ToLower(c));
+                }
+                selectedWords.AddRange(capsBuilder.ToString().Select(c => c));
+                capsBuilder.Clear();
+                totalWordCount++;
+
+                if (totalWordCount == by)
+                {
+                    break;
+                }
+
+                // 50% chance to populate symbol or number string
+                if (_rng.Next(2) == 1)
+                {
+                    // 50% chance of symbol string
+                    if(_rng.Next(2) == 0)
+                    {
+                        int symStrLen = _rng.Next(1, 6);
+                        switch (symStrLen)
+                        {
+                            case 1:
+                                while (sb.Length < 1)
+                                {
+                                    sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                                }
+                                break;
+                            case 2:
+                                while (sb.Length < 2)
+                                {
+                                    sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                                }
+                                break;
+                            case 3:
+                                while (sb.Length < 3)
+                                {
+                                    sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                                }
+                                break;
+                            case 4:
+                                while (sb.Length < 4)
+                                {
+                                    sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                                }
+                                break;
+                            case 5:
+                                while (sb.Length < 5)
+                                {
+                                    sb.Append(LegalSymbols[_rng.Next(0, LegalSymbols.Length)]);
+                                }
+                                break;
+                        }
+                        sb.Append(' ');
+                    }
+
+                    // 50% chance of num string
+                    else
+                    {
+                        int numStrLen = _rng.Next(1, 6);
+                        switch (numStrLen)
+                        {
+                            case 1:
+                                sb.Append(_rng.Next(1, 10));
+                                break;
+                            case 2:
+                                sb.Append(_rng.Next(1, 100));
+                                break;
+                            case 3:
+                                sb.Append(_rng.Next(1, 1000));
+                                break;
+                            case 4:
+                                sb.Append(_rng.Next(1, 10000));
+                                break;
+                            case 5:
+                                sb.Append(_rng.Next(1, 100000));
+                                break;
+                        }
+                        sb.Append(' ');
+                    }           
+                    
+                    selectedWords.AddRange(sb.ToString().Select(c => c));
+                    totalWordCount++;
+                    sb.Clear();
+                    
+                    if (totalWordCount == by)
+                    {
+                        break;
+                    }
+                }
+            }
+            return Ok(convertToWordTestObjects(selectedWords));
         }
     }
 }

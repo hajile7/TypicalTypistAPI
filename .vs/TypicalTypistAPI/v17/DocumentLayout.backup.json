@@ -5,38 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\controllers\\wordscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\controllers\\wordscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\controllers\\userstatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\controllers\\userstatscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\models\\userkeystatdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\models\\userkeystatdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\models\\usertypingtestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\models\\usertypingtestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\models\\usertypingtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\models\\usertypingtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\models\\loginmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\models\\postuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\models\\postuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|c:\\users\\eli\\source\\repos\\my stuff\\typicaltypist\\typicaltypistapi\\typicaltypistapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D14A30E9-D17A-41CE-A45C-207E740CE586}|TypicalTypistAPI\\TypicalTypistAPI.csproj|solutionrelative:typicaltypistapi\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -45,7 +13,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
+          "DockedWidth": 219,
           "SelectedChildIndex": 1,
           "Children": [
             {
@@ -60,106 +28,10 @@
               "RelativeDocumentMoniker": "TypicalTypistAPI\\Controllers\\WordsController.cs",
               "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\WordsController.cs",
               "RelativeToolTip": "TypicalTypistAPI\\Controllers\\WordsController.cs",
-              "ViewState": "AgIAAG8AAAAAAAAAAAAcwHYAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAC4CAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T17:01:16.728Z",
+              "WhenOpened": "2024-11-13T16:54:34.268Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserKeyStatDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\UserKeyStatDTO.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Models\\UserKeyStatDTO.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\UserKeyStatDTO.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Models\\UserKeyStatDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-11T18:15:05.187Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserTypingTest.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\UserTypingTest.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Models\\UserTypingTest.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\UserTypingTest.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Models\\UserTypingTest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T17:13:43.153Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserTypingTestDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\UserTypingTestDTO.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Models\\UserTypingTestDTO.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\UserTypingTestDTO.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Models\\UserTypingTestDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-08T17:00:52.043Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "LoginModel.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\LoginModel.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Models\\LoginModel.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\LoginModel.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Models\\LoginModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-06T00:08:10.036Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "User.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\User.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Models\\User.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\User.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Models\\User.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T20:40:57.202Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PostUserDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\PostUserDTO.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Models\\PostUserDTO.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Models\\PostUserDTO.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Models\\PostUserDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-05T20:02:16.545Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Controllers\\UserController.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\UserController.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Controllers\\UserController.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowD8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T16:56:00.384Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserStatsController.cs",
-              "DocumentMoniker": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\UserStatsController.cs",
-              "RelativeDocumentMoniker": "TypicalTypistAPI\\Controllers\\UserStatsController.cs",
-              "ToolTip": "C:\\Users\\Eli\\source\\repos\\My stuff\\TypicalTypist\\TypicalTypistAPI\\TypicalTypistAPI\\Controllers\\UserStatsController.cs",
-              "RelativeToolTip": "TypicalTypistAPI\\Controllers\\UserStatsController.cs",
-              "ViewState": "AgIAAJcAAAAAAAAAAAAcwLcAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-04T16:56:06.213Z"
             }
           ]
         }
