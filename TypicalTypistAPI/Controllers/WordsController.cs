@@ -53,8 +53,8 @@ namespace TypicalTypistAPI.Controllers
         }
 
         // HTTP calls
-        [HttpGet("Random")]
-        public IActionResult getRandomWords()
+        [HttpGet("Random/{x}")]
+        public IActionResult getRandomWords(int x)
         {
             var randomWords = wordCacheService.GetRandomWords(200);
             int totalWordCount = 0;
@@ -66,7 +66,7 @@ namespace TypicalTypistAPI.Controllers
                 selectedWords.AddRange(workingWord.Select(c => c));
                 totalWordCount++;
 
-                if (totalWordCount == 50)
+                if (totalWordCount == x)
                 {
                     break;
                 }
@@ -77,8 +77,8 @@ namespace TypicalTypistAPI.Controllers
 
         }
 
-        [HttpGet("RandomCaps")]
-        public IActionResult getRandomCapsWords()
+        [HttpGet("RandomCaps/{y}")]
+        public IActionResult getRandomCapsWords(int y)
         {
             var randomWords = wordCacheService.GetRandomWords(200);
             int totalWordCount = 0;
@@ -88,8 +88,9 @@ namespace TypicalTypistAPI.Controllers
             {
                 string workingWord = (char.ToUpper(word[0]) + word.Substring(1)) + " ";
                 selectedWords.AddRange(workingWord.Select(c => c));
+                totalWordCount++;
 
-                if (totalWordCount == 50)
+                if (totalWordCount == y)
                 {
                     break;
                 }
@@ -100,8 +101,8 @@ namespace TypicalTypistAPI.Controllers
 
         }
 
-        [HttpGet("RandomNumbers")]
-        public IActionResult getRandomWordsAndNumbers()
+        [HttpGet("RandomNumbers/{z}")]
+        public IActionResult getRandomWordsAndNumbers(int z)
         {
             int totalWordCount = 0;
             string numString = string.Empty;
@@ -142,14 +143,14 @@ namespace TypicalTypistAPI.Controllers
                 selectedWords.AddRange(workingWord.Select(c => c));
                 totalWordCount++;
 
-                if(numString != string.Empty && totalWordCount != 50)
+                if(numString != string.Empty && totalWordCount != z)
                 {
                     selectedWords.AddRange(numString.Select(c => c));
                     totalWordCount++;
                     numString = string.Empty;
                 }
 
-                if (totalWordCount == 50)
+                if (totalWordCount == z)
                 {
                     break;
                 }
