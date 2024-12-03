@@ -241,6 +241,10 @@ namespace TypicalTypistAPI.Controllers
                 return NotFound(new { Message = "No bigraph data found for user." });
             }
 
+            result = result.OrderBy(stat => stat.StartingKey[0]) 
+               .ThenBy(stat => stat.Bigraph[1]) 
+               .ToList();
+
             return Ok(result);
 
         }
@@ -278,9 +282,11 @@ namespace TypicalTypistAPI.Controllers
                 return NotFound(new { Message = "No key data found for user." });
             }
 
-            List<UserKeyStatDTO> formattedResult = result.Select(t => convertToKeyStatDTO(t)).ToList();
+            List<UserKeyStatDTO> formattedResult = result.Select(t => convertToKeyStatDTO(t))
+                .OrderBy(t => t.Key)
+                .ToList();
 
-            return Ok(result);
+            return Ok(formattedResult);
 
         }
 
